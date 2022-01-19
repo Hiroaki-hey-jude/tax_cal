@@ -10,22 +10,38 @@ class ViewModel{
     this._ref = ref;
   }
 
-  get consumptionTax => _ref.watch(taxDataProvider.state).state.consumptionTax.toString();
-  get tabacoSpecialTax => _ref.watch(taxDataProvider.state).state.tabacoSpecialTax.toString();
-  get stateTabacoTax => _ref.watch(taxDataProvider.state).state.stateTabacoTax.toString();
-  get countryTabacoTax => _ref.watch(taxDataProvider.state).state.countryTabacoTax.toString();
+  get consumptionTax => _ref.watch(taxDataProvider.state).state.consumptionTax;
+  get tabacoSpecialTax => _ref.watch(taxDataProvider.state).state.tabacoSpecialTax;
+  get stateTabacoTax => _ref.watch(taxDataProvider.state).state.stateTabacoTax;
+  get countryTabacoTax => _ref.watch(taxDataProvider.state).state.countryTabacoTax;
 
   void onCalTabacoTax() {
+    print('こんにちは');
     _tabacoLogic.calConsumptionTax();
     _tabacoLogic.calTabacoSpecialTax();
     _tabacoLogic.calStateTabacoTax();
-    _tabacoLogic.calStateTabacoTax();
-    _ref.watch(taxDataProvider.state).state = _tabacoLogic.taxData();
+    _tabacoLogic.calCountryTabacoTax();
+    print('hello');
+    _ref.watch(taxDataProvider.state).state = _tabacoLogic.taxData;
+    // _ref.watch(taxDataProvider.state).state.consumptionTax.toStringAsFixed(2);
+    // _ref.watch(taxDataProvider.state).state.tabacoSpecialTax.toStringAsFixed(2);
+    // _ref.watch(taxDataProvider.state).state.stateTabacoTax.toStringAsFixed(2);
+    // _ref.watch(taxDataProvider.state).state.countryTabacoTax.toStringAsFixed(2);
+    print('${_ref.watch(taxDataProvider.state).state.consumptionTax} ここには何が入っているんだ！！');
   }
 
   void onReset() {
     _tabacoLogic.reset();
-    _ref.watch(taxDataProvider.state).state = _tabacoLogic.taxData();
+    _ref.watch(taxDataProvider.state).state = _tabacoLogic.taxData;
+  }
+
+  void onSetPrice(double a) {
+    print('${a} これはview model');
+    _tabacoLogic.setPriceLogic(a);
+  }
+
+  void onSetQuantity(double a){
+    _tabacoLogic.setQuantityLogic(a);
   }
 
 }

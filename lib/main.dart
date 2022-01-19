@@ -51,7 +51,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const TaxScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => TaxScreen()));
             },
             child: Card(
               color: Colors.white60,

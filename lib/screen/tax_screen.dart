@@ -7,21 +7,20 @@ import 'package:tax/logic/tabaco_logic.dart';
 import 'package:tax/view_model.dart';
 
 class TaxScreen extends ConsumerStatefulWidget {
-  const TaxScreen({Key? key}) : super(key: key);
+  double price = 0;
+  double quantity = 0;
+  TaxScreen({Key? key}) : super(key: key);
 
   @override
   ConsumerState<TaxScreen> createState() => _TaxScreenState();
 }
 
 class _TaxScreenState extends ConsumerState<TaxScreen> {
-  Tabaco _tabaco = Tabaco();
   ViewModel _viewModel = ViewModel();
-  TabacoLogic _tabacoLogic = TabacoLogic();
   final _formKey = GlobalKey<FormState>();
   final _formKey2 = GlobalKey<FormState>();
   final myController = TextEditingController();
-  // int price = 0;
-  // int quantity = 0;
+
 
   @override
   void initState(){
@@ -60,7 +59,6 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(45, 25, 10, 10),
                           child: TextFormField(
-                            controller: myController,
                             keyboardType: TextInputType.number,
                             inputFormatters: [
                               FilteringTextInputFormatter.digitsOnly
@@ -83,8 +81,11 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
                               return null;
                             },
                             onSaved: (value) {
-                              _tabaco.price = double.parse(value!);
-                              print(_tabaco.price);
+                              // _tabaco.price = double.parse(value!);
+                              // print(_tabaco.price);
+                              _viewModel.onSetPrice(double.parse(value!));
+                              //widget.price = double.parse(value!);
+                              //print('${_tabaco.price} これはtax screen');
                             },
                           ),
                         ),
@@ -131,8 +132,12 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
                               return null;
                             },
                             onSaved: (value) {
-                              _tabaco.quantity = double.parse(value!);
-                              print(_tabaco.quantity);
+                              // _tabaco.quantity = double.parse(value!);
+                              // print(_tabaco.quantity);
+                              //print(_viewModel.onSetPrice(double.parse(value!)));
+                              _viewModel.onSetQuantity(double.parse(value!));
+                              //widget.quantity = double.parse(value!);
+                              //_tabaco.price;
                             },
                           ),
                         ),
@@ -155,7 +160,7 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
                       onPressed: () {
                         _formKey.currentState!.reset();
                         _formKey2.currentState!.reset();
-                        _viewModel.onReset();
+                        //_viewModel.onReset();
                       },
                       child: Text('クリア'),
                   ),
@@ -168,9 +173,9 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
                         // 入力データが正常な場合の処理
                         this._formKey.currentState!.save();
                         this._formKey2.currentState!.save();
-                        _tabacoLogic.calConsumptionTax();
-                        //_viewModel.onCalTabacoTax();
-                        print(_viewModel.consumptionTax);
+                        //_tabacoLogic.calConsumptionTax();
+                        _viewModel.onCalTabacoTax();
+                        //print(_viewModel.consumptionTax);
                       }
                     },
                     child: Text('計算'),
@@ -178,15 +183,46 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
                 ),
               ],
             ),
-            // Row(
-            //   children: [
-            //     Text('消費税　9.1%',style: TextStyle(
-            //       fontWeight: FontWeight.bold,
-            //     ),),
-            //     SizedBox(width: 5),
-            //     Text(_viewModel.consumptionTax),
-            //   ],
-            // )
+            Column(
+              children: [
+                Row(
+                  children: [
+                    const Text('消費税　9.1%',style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),),
+                    SizedBox(width: 5),
+                    Text(_viewModel.consumptionTax.toStringAsFixed(3)),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Text('たばこ特別税', style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),),
+                    SizedBox(width: 5),
+                    Text(_viewModel.tabacoSpecialTax.toStringAsFixed(3)),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Text('地方タバコ税', style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),),
+                    SizedBox(width: 5),
+                    Text(_viewModel.stateTabacoTax.toStringAsFixed(3)),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Text('国タバコ税', style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),),
+                    SizedBox(width: 5),
+                    Text(_viewModel.countryTabacoTax.toStringAsFixed(3)),
+                  ],
+                ),
+              ],
+            ),
           ],
         ),
 
