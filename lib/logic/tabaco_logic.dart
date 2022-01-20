@@ -9,6 +9,7 @@ class TabacoLogic{
       tabacoSpecialTax: 0,
       stateTabacoTax: 0,
       countryTabacoTax: 0,
+      allTabacoTax: 0,
   );
 
   get taxData => _taxData;
@@ -34,12 +35,22 @@ class TabacoLogic{
     _taxData = _taxData.copyWith(countryTabacoTax: (_tabaco.price!*0.23455172)/_tabaco.quantity!);
   }
 
+  void calAllTabacoTax(){
+    _taxData = _taxData.copyWith(
+        allTabacoTax:
+    ((_tabaco.price!*0.09091379)/_tabaco.quantity!)
+    +((_tabaco.price!*0.02827586)/_tabaco.quantity!)+
+    ((_tabaco.price!*0.26282759)/_tabaco.quantity!)+
+    ((_tabaco.price!*0.23455172)/_tabaco.quantity!));
+  }
+
   void reset() {
     _taxData = const TaxData(
         consumptionTax: 0,
         tabacoSpecialTax: 0,
         stateTabacoTax: 0,
         countryTabacoTax: 0,
+        allTabacoTax: 0,
     );
   }
 

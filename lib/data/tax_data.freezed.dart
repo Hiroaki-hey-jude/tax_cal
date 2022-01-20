@@ -26,12 +26,14 @@ class _$TaxDataTearOff {
       {required double consumptionTax,
       required double tabacoSpecialTax,
       required double stateTabacoTax,
-      required double countryTabacoTax}) {
+      required double countryTabacoTax,
+      required double allTabacoTax}) {
     return _TaxData(
       consumptionTax: consumptionTax,
       tabacoSpecialTax: tabacoSpecialTax,
       stateTabacoTax: stateTabacoTax,
       countryTabacoTax: countryTabacoTax,
+      allTabacoTax: allTabacoTax,
     );
   }
 
@@ -49,6 +51,7 @@ mixin _$TaxData {
   double get tabacoSpecialTax => throw _privateConstructorUsedError;
   double get stateTabacoTax => throw _privateConstructorUsedError;
   double get countryTabacoTax => throw _privateConstructorUsedError;
+  double get allTabacoTax => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -63,7 +66,8 @@ abstract class $TaxDataCopyWith<$Res> {
       {double consumptionTax,
       double tabacoSpecialTax,
       double stateTabacoTax,
-      double countryTabacoTax});
+      double countryTabacoTax,
+      double allTabacoTax});
 }
 
 /// @nodoc
@@ -80,6 +84,7 @@ class _$TaxDataCopyWithImpl<$Res> implements $TaxDataCopyWith<$Res> {
     Object? tabacoSpecialTax = freezed,
     Object? stateTabacoTax = freezed,
     Object? countryTabacoTax = freezed,
+    Object? allTabacoTax = freezed,
   }) {
     return _then(_value.copyWith(
       consumptionTax: consumptionTax == freezed
@@ -98,6 +103,10 @@ class _$TaxDataCopyWithImpl<$Res> implements $TaxDataCopyWith<$Res> {
           ? _value.countryTabacoTax
           : countryTabacoTax // ignore: cast_nullable_to_non_nullable
               as double,
+      allTabacoTax: allTabacoTax == freezed
+          ? _value.allTabacoTax
+          : allTabacoTax // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -111,7 +120,8 @@ abstract class _$TaxDataCopyWith<$Res> implements $TaxDataCopyWith<$Res> {
       {double consumptionTax,
       double tabacoSpecialTax,
       double stateTabacoTax,
-      double countryTabacoTax});
+      double countryTabacoTax,
+      double allTabacoTax});
 }
 
 /// @nodoc
@@ -129,6 +139,7 @@ class __$TaxDataCopyWithImpl<$Res> extends _$TaxDataCopyWithImpl<$Res>
     Object? tabacoSpecialTax = freezed,
     Object? stateTabacoTax = freezed,
     Object? countryTabacoTax = freezed,
+    Object? allTabacoTax = freezed,
   }) {
     return _then(_TaxData(
       consumptionTax: consumptionTax == freezed
@@ -147,6 +158,10 @@ class __$TaxDataCopyWithImpl<$Res> extends _$TaxDataCopyWithImpl<$Res>
           ? _value.countryTabacoTax
           : countryTabacoTax // ignore: cast_nullable_to_non_nullable
               as double,
+      allTabacoTax: allTabacoTax == freezed
+          ? _value.allTabacoTax
+          : allTabacoTax // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -158,7 +173,8 @@ class _$_TaxData with DiagnosticableTreeMixin implements _TaxData {
       {required this.consumptionTax,
       required this.tabacoSpecialTax,
       required this.stateTabacoTax,
-      required this.countryTabacoTax});
+      required this.countryTabacoTax,
+      required this.allTabacoTax});
 
   factory _$_TaxData.fromJson(Map<String, dynamic> json) =>
       _$$_TaxDataFromJson(json);
@@ -171,10 +187,12 @@ class _$_TaxData with DiagnosticableTreeMixin implements _TaxData {
   final double stateTabacoTax;
   @override
   final double countryTabacoTax;
+  @override
+  final double allTabacoTax;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TaxData(consumptionTax: $consumptionTax, tabacoSpecialTax: $tabacoSpecialTax, stateTabacoTax: $stateTabacoTax, countryTabacoTax: $countryTabacoTax)';
+    return 'TaxData(consumptionTax: $consumptionTax, tabacoSpecialTax: $tabacoSpecialTax, stateTabacoTax: $stateTabacoTax, countryTabacoTax: $countryTabacoTax, allTabacoTax: $allTabacoTax)';
   }
 
   @override
@@ -185,7 +203,8 @@ class _$_TaxData with DiagnosticableTreeMixin implements _TaxData {
       ..add(DiagnosticsProperty('consumptionTax', consumptionTax))
       ..add(DiagnosticsProperty('tabacoSpecialTax', tabacoSpecialTax))
       ..add(DiagnosticsProperty('stateTabacoTax', stateTabacoTax))
-      ..add(DiagnosticsProperty('countryTabacoTax', countryTabacoTax));
+      ..add(DiagnosticsProperty('countryTabacoTax', countryTabacoTax))
+      ..add(DiagnosticsProperty('allTabacoTax', allTabacoTax));
   }
 
   @override
@@ -200,7 +219,9 @@ class _$_TaxData with DiagnosticableTreeMixin implements _TaxData {
             const DeepCollectionEquality()
                 .equals(other.stateTabacoTax, stateTabacoTax) &&
             const DeepCollectionEquality()
-                .equals(other.countryTabacoTax, countryTabacoTax));
+                .equals(other.countryTabacoTax, countryTabacoTax) &&
+            const DeepCollectionEquality()
+                .equals(other.allTabacoTax, allTabacoTax));
   }
 
   @override
@@ -209,7 +230,8 @@ class _$_TaxData with DiagnosticableTreeMixin implements _TaxData {
       const DeepCollectionEquality().hash(consumptionTax),
       const DeepCollectionEquality().hash(tabacoSpecialTax),
       const DeepCollectionEquality().hash(stateTabacoTax),
-      const DeepCollectionEquality().hash(countryTabacoTax));
+      const DeepCollectionEquality().hash(countryTabacoTax),
+      const DeepCollectionEquality().hash(allTabacoTax));
 
   @JsonKey(ignore: true)
   @override
@@ -227,7 +249,8 @@ abstract class _TaxData implements TaxData {
       {required double consumptionTax,
       required double tabacoSpecialTax,
       required double stateTabacoTax,
-      required double countryTabacoTax}) = _$_TaxData;
+      required double countryTabacoTax,
+      required double allTabacoTax}) = _$_TaxData;
 
   factory _TaxData.fromJson(Map<String, dynamic> json) = _$_TaxData.fromJson;
 
@@ -239,6 +262,8 @@ abstract class _TaxData implements TaxData {
   double get stateTabacoTax;
   @override
   double get countryTabacoTax;
+  @override
+  double get allTabacoTax;
   @override
   @JsonKey(ignore: true)
   _$TaxDataCopyWith<_TaxData> get copyWith =>

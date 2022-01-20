@@ -7,5 +7,6 @@ final taxDataProvider = StateProvider<TaxData>(
             tabacoSpecialTax: 0,
             stateTabacoTax: 0,
             countryTabacoTax: 0,
+            allTabacoTax: 0,
         ),
 );

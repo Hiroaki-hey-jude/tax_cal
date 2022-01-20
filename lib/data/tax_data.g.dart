@@ -11,6 +11,7 @@ _$_TaxData _$$_TaxDataFromJson(Map<String, dynamic> json) => _$_TaxData(
       tabacoSpecialTax: (json['tabacoSpecialTax'] as num).toDouble(),
       stateTabacoTax: (json['stateTabacoTax'] as num).toDouble(),
       countryTabacoTax: (json['countryTabacoTax'] as num).toDouble(),
+      allTabacoTax: (json['allTabacoTax'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$_TaxDataToJson(_$_TaxData instance) =>
@@ -19,4 +20,5 @@ Map<String, dynamic> _$$_TaxDataToJson(_$_TaxData instance) =>
       'tabacoSpecialTax': instance.tabacoSpecialTax,
       'stateTabacoTax': instance.stateTabacoTax,
       'countryTabacoTax': instance.countryTabacoTax,
+      'allTabacoTax': instance.allTabacoTax,
     };

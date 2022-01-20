@@ -19,7 +19,7 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
   ViewModel _viewModel = ViewModel();
   final _formKey = GlobalKey<FormState>();
   final _formKey2 = GlobalKey<FormState>();
-  final myController = TextEditingController();
+  final focusNode = FocusNode();
 
 
   @override
@@ -214,6 +214,12 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
                   ),),
                   _viewModel.countryTabacoTax.toStringAsFixed(3) == '0.000'? Text('')
                       : Text('${_viewModel.countryTabacoTax.toStringAsFixed(3)}円'),
+                  _viewModel.allTabacoTax.toStringAsFixed(3) == '0.000'? Text('')
+                      : Text('全て合わせて', style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),),
+                  _viewModel.allTabacoTax.toStringAsFixed(3) == '0.000'? Text('')
+                      : Text('${_viewModel.allTabacoTax.toStringAsFixed(3)}円'),
                 ],
               ),
             ),

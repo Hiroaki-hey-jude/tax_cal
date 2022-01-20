@@ -14,6 +14,7 @@ class ViewModel{
   get tabacoSpecialTax => _ref.watch(taxDataProvider.state).state.tabacoSpecialTax;
   get stateTabacoTax => _ref.watch(taxDataProvider.state).state.stateTabacoTax;
   get countryTabacoTax => _ref.watch(taxDataProvider.state).state.countryTabacoTax;
+  get allTabacoTax => _ref.watch(taxDataProvider.state).state.allTabacoTax;
 
   void onCalTabacoTax() {
     print('こんにちは');
@@ -21,6 +22,7 @@ class ViewModel{
     _tabacoLogic.calTabacoSpecialTax();
     _tabacoLogic.calStateTabacoTax();
     _tabacoLogic.calCountryTabacoTax();
+    _tabacoLogic.calAllTabacoTax();
     print('hello');
     _ref.watch(taxDataProvider.state).state = _tabacoLogic.taxData;
     // _ref.watch(taxDataProvider.state).state.consumptionTax.toStringAsFixed(2);

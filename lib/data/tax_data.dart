@@ -11,6 +11,7 @@ class TaxData with _$TaxData {
     required double tabacoSpecialTax,
     required double stateTabacoTax,
     required double countryTabacoTax,
+    required double allTabacoTax,
   }) = _TaxData;
 
   factory TaxData.fromJson(Map<String, dynamic> json) =>
