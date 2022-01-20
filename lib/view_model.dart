@@ -25,10 +25,6 @@ class ViewModel{
     _tabacoLogic.calAllTabacoTax();
     print('hello');
     _ref.watch(taxDataProvider.state).state = _tabacoLogic.taxData;
-    // _ref.watch(taxDataProvider.state).state.consumptionTax.toStringAsFixed(2);
-    // _ref.watch(taxDataProvider.state).state.tabacoSpecialTax.toStringAsFixed(2);
-    // _ref.watch(taxDataProvider.state).state.stateTabacoTax.toStringAsFixed(2);
-    // _ref.watch(taxDataProvider.state).state.countryTabacoTax.toStringAsFixed(2);
     print('${_ref.watch(taxDataProvider.state).state.consumptionTax} ここには何が入っているんだ！！');
   }
 

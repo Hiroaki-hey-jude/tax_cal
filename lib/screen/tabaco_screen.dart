@@ -16,10 +16,11 @@ class TaxScreen extends ConsumerStatefulWidget {
 }
 
 class _TaxScreenState extends ConsumerState<TaxScreen> {
-  ViewModel _viewModel = ViewModel();
+  final ViewModel _viewModel = ViewModel();
   final _formKey = GlobalKey<FormState>();
   final _formKey2 = GlobalKey<FormState>();
   final focusNode = FocusNode();
+  double? price;
 
 
   @override
@@ -64,7 +65,7 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
                               FilteringTextInputFormatter.digitsOnly
                             ],
                             decoration: InputDecoration(
-                                hintText: 'タバコの金額を入力して下さい', // 入力ヒント
+                                hintText: '総額いくらでしたか', // 入力ヒント
                                 enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                   color: color1,
@@ -81,11 +82,8 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
                               return null;
                             },
                             onSaved: (value) {
-                              // _tabaco.price = double.parse(value!);
-                              // print(_tabaco.price);
                               _viewModel.onSetPrice(double.parse(value!));
-                              //widget.price = double.parse(value!);
-                              //print('${_tabaco.price} これはtax screen');
+                              price = double.parse(value!);
                             },
                           ),
                         ),
@@ -114,7 +112,7 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
                               FilteringTextInputFormatter.digitsOnly
                             ],
                             decoration: InputDecoration(
-                                hintText: '個数を入力して下さい', // 入力ヒント
+                                hintText: '何箱買いましたか', // 入力ヒント
                                 enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: color1,
@@ -132,12 +130,7 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
                               return null;
                             },
                             onSaved: (value) {
-                              // _tabaco.quantity = double.parse(value!);
-                              // print(_tabaco.quantity);
-                              //print(_viewModel.onSetPrice(double.parse(value!)));
                               _viewModel.onSetQuantity(double.parse(value!));
-                              //widget.quantity = double.parse(value!);
-                              //_tabaco.price;
                             },
                           ),
                         ),
@@ -160,7 +153,6 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
                       onPressed: () {
                         _formKey.currentState!.reset();
                         _formKey2.currentState!.reset();
-                        //_viewModel.onReset();
                       },
                       child: const Text('クリア'),
                   ),
@@ -173,9 +165,7 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
                         // 入力データが正常な場合の処理
                         this._formKey.currentState!.save();
                         this._formKey2.currentState!.save();
-                        //_tabacoLogic.calConsumptionTax();
                         _viewModel.onCalTabacoTax();
-                        //print(_viewModel.consumptionTax);
                       }
                     },
                     child: const Text('計算'),
@@ -187,46 +177,100 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
               padding: const EdgeInsets.all(30.0),
               child: Column(
                 children: [
-                  _viewModel.consumptionTax.toStringAsFixed(3) == '0.000'? Text('')
-                      :Text('消費税',style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),),
-                  _viewModel.consumptionTax.toStringAsFixed(3) == '0.000'? Text('')
-                      : Text('${_viewModel.consumptionTax.toStringAsFixed(3)}円'),
+                  Container(
+                    child: Column(
+                      children: [
+                        _viewModel.consumptionTax.toStringAsFixed(3) == '0.000'? const Text('')
+                            :Text('消費税',style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          color: color1,
+                        ),),
+                        _viewModel.consumptionTax.toStringAsFixed(3) == '0.000'? const Text('')
+                            : Text('${_viewModel.consumptionTax.toStringAsFixed(3)}円',
+                          style: const TextStyle(
+                            fontSize: 20,
+                          ),),
+                      ],
+                    ),
+                  ),
 
-                  _viewModel.tabacoSpecialTax.toStringAsFixed(3) == '0.000'? Text('')
-                      :Text('たばこ特別税', style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),),
-                  _viewModel.tabacoSpecialTax.toStringAsFixed(3) == '0.000'? Text('')
-                      : Text('${_viewModel.tabacoSpecialTax.toStringAsFixed(3)}円'),
+                  Container(
+                    child: Column(
+                      children: [
+                        _viewModel.tabacoSpecialTax.toStringAsFixed(3) == '0.000'? const Text('')
+                            :Text('たばこ特別税', style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          color: color1,
+                        ),),
+                        _viewModel.tabacoSpecialTax.toStringAsFixed(3) == '0.000'? const Text('')
+                            : Text('${_viewModel.tabacoSpecialTax.toStringAsFixed(3)}円',
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),),
+                      ],
+                    ),
+                  ),
 
-                  _viewModel.stateTabacoTax.toStringAsFixed(3) == '0.000'? Text('')
-                      :Text('地方タバコ税', style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),),
-                  _viewModel.stateTabacoTax.toStringAsFixed(3) == '0.000'? Text('')
-                      : Text('${_viewModel.stateTabacoTax.toStringAsFixed(3)}円'),
+                  Container(
+                    child: Column(
+                      children: [
+                        _viewModel.stateTabacoTax.toStringAsFixed(3) == '0.000'? const Text('')
+                            :Text('地方タバコ税', style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          color: color1,
+                        ),),
+                        _viewModel.stateTabacoTax.toStringAsFixed(3) == '0.000'? const Text('')
+                            : Text('${_viewModel.stateTabacoTax.toStringAsFixed(3)}円',
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),),
+                      ],
+                    ),
+                  ),
 
-                  _viewModel.countryTabacoTax.toStringAsFixed(3) == '0.000'? Text('')
-                      : Text('国タバコ税', style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),),
-                  _viewModel.countryTabacoTax.toStringAsFixed(3) == '0.000'? Text('')
-                      : Text('${_viewModel.countryTabacoTax.toStringAsFixed(3)}円'),
-                  _viewModel.allTabacoTax.toStringAsFixed(3) == '0.000'? Text('')
-                      : Text('全て合わせて', style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),),
-                  _viewModel.allTabacoTax.toStringAsFixed(3) == '0.000'? Text('')
-                      : Text('${_viewModel.allTabacoTax.toStringAsFixed(3)}円'),
+                  Container(
+                    child: Column(
+                      children: [
+                        _viewModel.countryTabacoTax.toStringAsFixed(3) == '0.000'? const Text('')
+                            : Text('国タバコ税', style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          color: color1,
+                        ),),
+                        _viewModel.countryTabacoTax.toStringAsFixed(3) == '0.000'? const Text('')
+                            : Text('${_viewModel.countryTabacoTax.toStringAsFixed(3)}円',
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),),
+                      ],
+                    )
+                  ),
+
+                  Container(
+                    child: Column(
+                      children: [
+                        _viewModel.allTabacoTax.toStringAsFixed(3) == '0.000'? const Text('')
+                            : Text('総額', style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          color: color1,
+                        ),),
+                        _viewModel.allTabacoTax.toStringAsFixed(3) == '0.000'? const Text('')
+                            : Text('${_viewModel.allTabacoTax.toStringAsFixed(3)}円/${price}円が税金です',
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
-
           ],
         ),
-
       ),
     );
   }
