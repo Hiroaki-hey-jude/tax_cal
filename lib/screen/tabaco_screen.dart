@@ -83,7 +83,7 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
                             },
                             onSaved: (value) {
                               _viewModel.onSetPrice(double.parse(value!));
-                              price = double.parse(value!);
+                              price = double.parse(value);
                             },
                           ),
                         ),
@@ -166,6 +166,7 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
                         this._formKey.currentState!.save();
                         this._formKey2.currentState!.save();
                         _viewModel.onCalTabacoTax();
+                        FocusManager.instance.primaryFocus!.unfocus();
                       }
                     },
                     child: const Text('計算'),
