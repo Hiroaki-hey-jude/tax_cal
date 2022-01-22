@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tax/const/color.dart';
-import 'package:tax/data/tabaco.dart';
-import 'package:tax/logic/tabaco_logic.dart';
 import 'package:tax/view_model.dart';
 
 class TaxScreen extends ConsumerStatefulWidget {

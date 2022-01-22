@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tax/data/tax_data.dart';
+import 'package:tax/data/tabaco/tax_data.dart';
 
 final taxDataProvider = StateProvider<TaxData>(
         (ref) => const TaxData(

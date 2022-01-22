@@ -6,7 +6,6 @@ class Tabaco{
 
   void setPrice(double v){
     price = v;
-    print('これはTabaco${price}');
   }
 
   void setQuantity(double v){

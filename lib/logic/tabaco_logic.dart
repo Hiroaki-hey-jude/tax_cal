@@ -1,5 +1,5 @@
-import 'package:tax/data/tabaco.dart';
-import 'package:tax/data/tax_data.dart';
+import 'package:tax/data/tabaco/tabaco.dart';
+import 'package:tax/data/tabaco/tax_data.dart';
 import 'dart:math';
 import 'package:tax/screen/tabaco_screen.dart';
 

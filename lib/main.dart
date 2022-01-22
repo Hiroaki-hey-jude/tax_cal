@@ -81,7 +81,7 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const Text("酒",
+                    const Text("ビール",
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 30,
