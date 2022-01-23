@@ -1,9 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tax/logic/beer_logic.dart';
 import 'package:tax/logic/tabaco_logic.dart';
 import 'package:tax/provider.dart';
 
 class ViewModel{
   TabacoLogic _tabacoLogic = TabacoLogic();
+  BeerLogic _beerLogic = BeerLogic();
   late WidgetRef _ref;
 
   void setRef(WidgetRef ref){
@@ -15,6 +17,14 @@ class ViewModel{
   get stateTabacoTax => _ref.watch(taxDataProvider.state).state.stateTabacoTax;
   get countryTabacoTax => _ref.watch(taxDataProvider.state).state.countryTabacoTax;
   get allTabacoTax => _ref.watch(taxDataProvider.state).state.allTabacoTax;
+
+  get beerMl => _ref.watch(beerDataProvider.state).state.ml;
+  get beerTax => _ref.watch(beerDataProvider.state).state.beerTax;
+
+  void onCalBeerTax() {
+    _beerLogic.calBeerTax();
+    _ref.watch(beerDataProvider.state).state = _beerLogic.beerData;
+  }
 
   void onCalTabacoTax() {
     print('こんにちは');
@@ -40,6 +50,10 @@ class ViewModel{
 
   void onSetQuantity(double a){
     _tabacoLogic.setQuantityLogic(a);
+  }
+
+  void onSetMl(double a) {
+    _beerLogic.setMl(a);
   }
 
 }

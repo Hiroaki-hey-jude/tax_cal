@@ -1,9 +1,10 @@
 class Beer{
-  int? ml;
+  double? ml;
 
   Beer({this.ml});
 
-  void setMl(int m){
+  void setMl(double m){
     ml = m;
   }
+
 }
