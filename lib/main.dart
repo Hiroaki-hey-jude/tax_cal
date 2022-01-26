@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tax/screen/alcohol_screen.dart';
-import 'package:tax/screen/car_screen.dart';
+import 'package:tax/screen/stuff_screen.dart';
 import 'package:tax/screen/tabaco_screen.dart';
 
 import 'const/color.dart';
@@ -107,18 +107,11 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const Text("車",
+                    const Text("消費税のみ",
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 30,
                             fontWeight: FontWeight.bold)),
-                    Container(
-                      child: Image.asset(
-                        'assets/car.png',
-                        width: double.infinity,
-                        height: 110,
-                      ),
-                    ),
                   ],
                 ),
               ),
