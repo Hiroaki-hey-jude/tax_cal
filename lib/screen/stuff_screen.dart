@@ -74,6 +74,7 @@ class _CarScreenState extends ConsumerState<CarScreen> {
                               return null;
                             },
                             onSaved: (value) {
+                              _viewModel.onSetYen(double.parse(value!));
                             },
                           ),
                         ),
@@ -87,6 +88,58 @@ class _CarScreenState extends ConsumerState<CarScreen> {
                     ],
                   ),
                 )),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width/3,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _formKey.currentState!.reset();
+                    },
+                    child: const Text('クリア'),
+                  ),
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width/3,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        // 入力データが正常な場合の処理
+                        this._formKey.currentState!.save();
+                        _viewModel.onCalStuffConsumptionTax();
+                        FocusManager.instance.primaryFocus!.unfocus();
+                      }
+                    },
+                    child: const Text('計算'),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Column(
+                children: [
+                  Container(
+                    child: Column(
+                      children: [
+                        _viewModel.stuffConsumptionTax.toStringAsFixed(3) == '0.000'? const Text('')
+                            :Text('消費税',style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          color: color1,
+                        ),),
+                        _viewModel.stuffConsumptionTax.toStringAsFixed(3) == '0.000'? const Text('')
+                            : Text('${_viewModel.stuffConsumptionTax.toStringAsFixed(0)}円',
+                          style: const TextStyle(
+                            fontSize: 20,
+                          ),),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

@@ -1,11 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tax/logic/beer_logic.dart';
+import 'package:tax/logic/stuff_logic.dart';
 import 'package:tax/logic/tabaco_logic.dart';
 import 'package:tax/provider.dart';
 
 class ViewModel{
   TabacoLogic _tabacoLogic = TabacoLogic();
   BeerLogic _beerLogic = BeerLogic();
+  StuffLogic _stuffLogic = StuffLogic();
   late WidgetRef _ref;
 
   void setRef(WidgetRef ref){
@@ -21,19 +23,25 @@ class ViewModel{
   get beerMl => _ref.watch(beerDataProvider.state).state.ml;
   get beerTax => _ref.watch(beerDataProvider.state).state.beerTax;
 
+  get stuffConsumptionTax => _ref.watch(stuffDataProvider.state).state.stuffConsumptionTax;
+  get stuffYen => _ref.watch(stuffDataProvider.state).state.yen;
+
+  void onCalStuffConsumptionTax() {
+    _stuffLogic.calStuffConsumptionTax();
+    _ref.watch(stuffDataProvider.state).state = _stuffLogic.stuffData;
+  }
+
   void onCalBeerTax() {
     _beerLogic.calBeerTax();
     _ref.watch(beerDataProvider.state).state = _beerLogic.beerData;
   }
 
   void onCalTabacoTax() {
-    print('こんにちは');
     _tabacoLogic.calConsumptionTax();
     _tabacoLogic.calTabacoSpecialTax();
     _tabacoLogic.calStateTabacoTax();
     _tabacoLogic.calCountryTabacoTax();
     _tabacoLogic.calAllTabacoTax();
-    print('hello');
     _ref.watch(taxDataProvider.state).state = _tabacoLogic.taxData;
     print('${_ref.watch(taxDataProvider.state).state.consumptionTax} ここには何が入っているんだ！！');
   }
@@ -44,7 +52,6 @@ class ViewModel{
   }
 
   void onSetPrice(double a) {
-    print('${a} これはview model');
     _tabacoLogic.setPriceLogic(a);
   }
 
@@ -54,6 +61,10 @@ class ViewModel{
 
   void onSetMl(double a) {
     _beerLogic.setMl(a);
+  }
+
+  void onSetYen(double a){
+    _stuffLogic.setYen(a);
   }
 
 }
