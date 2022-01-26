@@ -248,23 +248,23 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
                     )
                   ),
 
-                  Container(
-                    child: Column(
-                      children: [
-                        _viewModel.allTabacoTax.toStringAsFixed(3) == '0.000'? const Text('')
-                            : Text('総額', style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                          color: color1,
-                        ),),
-                        _viewModel.allTabacoTax.toStringAsFixed(3) == '0.000'? const Text('')
-                            : Text('${_viewModel.allTabacoTax.toStringAsFixed(3)}円/${price}円が税金です',
-                        style: const TextStyle(
-                          fontSize: 20,
-                        ),),
-                      ],
-                    ),
-                  ),
+                  // Container(
+                  //   child: Column(
+                  //     children: [
+                  //       _viewModel.allTabacoTax.toStringAsFixed(3) == '0.000'? const Text('')
+                  //           : Text('総額', style: TextStyle(
+                  //         fontWeight: FontWeight.bold,
+                  //         fontSize: 30,
+                  //         color: color1,
+                  //       ),),
+                  //       _viewModel.allTabacoTax.toStringAsFixed(3) == '0.000'? const Text('')
+                  //           : Text('${price}円が税金です${_viewModel.allTabacoTax.toStringAsFixed(3)}/',
+                  //       style: const TextStyle(
+                  //         fontSize: 20,
+                  //       ),),
+                  //     ],
+                  //   ),
+                  // ),
                 ],
               ),
             ),
