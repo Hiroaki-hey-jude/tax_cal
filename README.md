@@ -1,5 +1,5 @@
 # name
-tax_cal
+税の計算
 
 ![yes](https://user-images.githubusercontent.com/76618285/151367823-049f8505-900b-45f0-bb36-9ce7dff39549.gif)
 
@@ -20,4 +20,3 @@ tax_cal
 ## Author
 Hiroaki Ueda
 
-# tax_cal
