@@ -1,6 +1,8 @@
 # name
 tax_cal
 
+![yes](https://user-images.githubusercontent.com/76618285/151367823-049f8505-900b-45f0-bb36-9ce7dff39549.gif)
+
 ## Overview
 このアプリは税の計算を簡単にしてくれるアプリです。
 今回はFlutter x Riverpod x Freezed x MVVM を用いてアプリを作成しました。
