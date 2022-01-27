@@ -2,7 +2,7 @@ import 'package:tax/data/beer/beer.dart';
 import 'package:tax/data/beer/beer_data.dart';
 
 class BeerLogic{
-  Beer _beer = Beer();
+  final Beer _beer = Beer();
   BeerData _beerData = const BeerData(
       beerTax: 0,
       ml: 0,

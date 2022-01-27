@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share/share.dart';
 import 'package:tax/const/color.dart';
 
 import '../view_model.dart';
@@ -15,6 +16,7 @@ class CarScreen extends ConsumerStatefulWidget {
 class _CarScreenState extends ConsumerState<CarScreen> {
   final ViewModel _viewModel = ViewModel();
   final _formKey = GlobalKey<FormState>();
+  double? stuff;
   @override
   void initState(){
     super.initState();
@@ -75,6 +77,7 @@ class _CarScreenState extends ConsumerState<CarScreen> {
                             },
                             onSaved: (value) {
                               _viewModel.onSetYen(double.parse(value!));
+                              stuff = double.parse(value);
                             },
                           ),
                         ),
@@ -141,6 +144,17 @@ class _CarScreenState extends ConsumerState<CarScreen> {
               ),
             ),
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.share),
+          onPressed: () {
+            if(_formKey.currentState!.validate()){
+              Share.share(
+                  '${stuff!.toStringAsFixed(0)}円の物を買ったら'
+                      '消費税は${_viewModel.stuffConsumptionTax.toStringAsFixed(0)}円かかります！'
+              );
+            }
+          },
         ),
       ),
     );

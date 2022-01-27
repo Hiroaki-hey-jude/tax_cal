@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:share/share.dart';
 import 'package:tax/const/color.dart';
 import 'package:tax/view_model.dart';
 
@@ -14,6 +15,7 @@ class AlcoholScreen extends ConsumerStatefulWidget {
 class _AlcoholScreenState extends ConsumerState<AlcoholScreen> {
   final ViewModel _viewModel = ViewModel();
   final _formKey = GlobalKey<FormState>();
+  double? beer;
   @override
   void initState(){
     super.initState();
@@ -74,6 +76,7 @@ class _AlcoholScreenState extends ConsumerState<AlcoholScreen> {
                             },
                             onSaved: (value) {
                               _viewModel.onSetMl(double.parse(value!));
+                              beer = double.parse(value);
                             },
                           ),
                         ),
@@ -140,6 +143,17 @@ class _AlcoholScreenState extends ConsumerState<AlcoholScreen> {
               ),
             ),
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.share),
+          onPressed: () {
+            if(_formKey.currentState!.validate()){
+              Share.share(
+                  '${beer!.toStringAsFixed(0)}mlのビールで'
+                      '${_viewModel.beerTax.toStringAsFixed(0)}円の酒税がかかります！'
+              );
+            }
+          },
         ),
       ),
     );

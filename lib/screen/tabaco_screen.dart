@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tax/const/color.dart';
 import 'package:tax/view_model.dart';
+import 'package:share/share.dart';
 
 class TaxScreen extends ConsumerStatefulWidget {
   double price = 0;
@@ -270,7 +271,22 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
             ),
           ],
         ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.share),
+          onPressed: () {
+            if(_formKey.currentState!.validate()){
+              Share.share(
+                '${price!.toStringAsFixed(0)}円のタバコのうち'
+                    '消費税は${_viewModel.consumptionTax.toStringAsFixed(0)}円、'
+                    'たばこ特別税は${_viewModel.tabacoSpecialTax.toStringAsFixed(0)}円、'
+                    '地方タバコ税は${_viewModel.stateTabacoTax.toStringAsFixed(0)}円、'
+                    '国タバコ税は${_viewModel.countryTabacoTax.toStringAsFixed(0)}円でした!!'
+              );
+            }
+          },
+        ),
       ),
     );
   }
+
 }

@@ -6,5 +6,4 @@ class Beer{
   void setMl(double m){
     ml = m;
   }
-
 }
