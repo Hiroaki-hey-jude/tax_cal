@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: color1,
       ),
+      darkTheme: ThemeData.dark(),
       home: const MyHomePage(),
     );
   }
@@ -106,8 +107,8 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                 color: Colors.white60,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    const Text("消費税のみ",
+                  children: const [
+                    Text("消費税のみ",
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 30,
