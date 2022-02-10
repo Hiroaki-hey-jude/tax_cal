@@ -112,7 +112,9 @@ class _MyHomePageState extends ConsumerState<MyHomePage> {
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 30,
-                            fontWeight: FontWeight.bold)),
+                            fontWeight: FontWeight.bold,
+                        ),
+                    ),
                   ],
                 ),
               ),

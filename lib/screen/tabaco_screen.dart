@@ -21,7 +21,6 @@ class _TaxScreenState extends ConsumerState<TaxScreen> {
   final focusNode = FocusNode();
   double? price;
 
-
   @override
   void initState(){
     super.initState();
